@@ -61,10 +61,12 @@ class ParticleManager:
     def tick(self, time_delta_millis):
         time_delta_sec = (time_delta_millis / MILLIS_IN_SECONDS)
 
-        self.x += time_delta_sec * self.dx * PIXELS_IN_METER
-        self.y += time_delta_sec * self.dy * PIXELS_IN_METER
-        self.surf_x = self.x - self.radius
-        self.surf_y = self.y - self.radius
+        delta_x = time_delta_sec * PIXELS_IN_METER * self.dx
+        delta_y = time_delta_sec * PIXELS_IN_METER * self.dy
+        self.x += delta_x
+        self.y += delta_y
+        self.surf_x += delta_x
+        self.surf_y += delta_y
         self.dy += time_delta_sec * G
 
         # Not physically accurate.
